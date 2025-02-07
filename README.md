@@ -42,7 +42,9 @@
 ![image](https://github.com/user-attachments/assets/004cc714-431a-4d45-8567-01292add8969)
 
 Откроем web доступ и помотри доступен ли наш сайт и возможно ли скачать файл
-Сайт взят из шаблона cloud-init  который создается в `15-cloudproj-02` и добавляется в бакет как стартавая страница
+Сайт взят из шаблона cloud-init который создается в `15-cloudproj-02` немного его модефицируем как и структуру хранилища и добавим страницу в бакет как стартавую страницу
+
+![image](https://github.com/user-attachments/assets/43dcf703-31b3-4631-b424-dff4a8970b26)
 
 ![image](https://github.com/user-attachments/assets/ba488b9e-9ad3-4d9b-809a-3bfd37002c73)
 
