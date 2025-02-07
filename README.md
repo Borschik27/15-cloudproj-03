@@ -1,6 +1,7 @@
 # 15-cloudproj-03
 
 Используя конфигурацию из репозитория `15-cloudproj-02`, отредактируем настройки бакета и добавим конфигурацию для защиты нашего Object Storage
+## Задача 1
 Для этого создадим сервисный аккаунт для управления Obj.Str., выдадим привелегии для управления хранилищем, создадим ключи для хранилища, и создадим симметричный ключ.
 
 Наше хранилище:
@@ -20,11 +21,31 @@
 
 Как видим обект использует ключ шифрования
 
-Создадим сайд через WEB-Консоль
-Так как через терраформ бакет не публичный получаем ошибку:
+Попробуем открыть web-доступ и посмотри что получится
+![image](https://github.com/user-attachments/assets/b87f171b-4beb-4de8-afe6-9fecc5c98725)
+Так как наш бакет шифрованный kms мы видим ошибку.
 
-![image](https://github.com/user-attachments/assets/2a6cf2d4-6a5c-4e04-b932-e79644d264f6)
+Как еще можно убедиться что шифруется наше хранилище и kms работает закоментируем строку которая создает наш kms и пересоздадим бакет
+```
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = yandex_kms_symmetric_key.kms_key.id
+        sse_algorithm = "aws:kms"
+      }
+    }
+  }
 
 
-![image](https://github.com/user-attachments/assets/00c31352-e6a6-41e4-b146-830b1f246183)
+```
+Теперь мы видим в настройках файл что нет использование kms ключа и наш бакет публичный
+![image](https://github.com/user-attachments/assets/004cc714-431a-4d45-8567-01292add8969)
 
+Откроем web доступ и помотри доступен ли наш сайт и возможно ли скачать файл
+Сайт взят из шаблона cloud-init  который создается в `15-cloudproj-02` и добавляется в бакет как стартавая страница
+
+![image](https://github.com/user-attachments/assets/ba488b9e-9ad3-4d9b-809a-3bfd37002c73)
+
+Перейдем на сайт и видим что он открывается и мы так же можем скачать файл:
+
+![image](https://github.com/user-attachments/assets/56891e42-8903-4071-ad9f-4e021dc9e760)
