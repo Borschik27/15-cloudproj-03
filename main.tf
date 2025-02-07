@@ -40,6 +40,7 @@ resource "yandex_storage_bucket" "bucket" {
     permissions = ["FULL_CONTROL"]
   }
 
+# Crypt bucket
   # server_side_encryption_configuration {
   #   rule {
   #     apply_server_side_encryption_by_default {
